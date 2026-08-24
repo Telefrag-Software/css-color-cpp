@@ -32,7 +32,7 @@ namespace css_colors::details {
 		return -1;
 	}
 
-	constexpr bool const_iless(const std::string_view& lhs, const std::string_view& rhs) {
+	inline constexpr bool const_iless(const std::string_view& lhs, const std::string_view& rhs) {
 		for (size_t i = 0; i < math::min(lhs.length(), rhs.length()); i++) {
 			if (const_tolower(lhs[i]) < const_tolower(rhs[i]))return true;
 			if (const_tolower(lhs[i]) > const_tolower(rhs[i]))return false;
@@ -40,7 +40,7 @@ namespace css_colors::details {
 		if (lhs.length() < rhs.length())return true;
 		return false;
 	}
-	constexpr bool const_iequal(const std::string_view& lhs, const std::string_view& rhs)noexcept {
+	inline constexpr bool const_iequal(const std::string_view& lhs, const std::string_view& rhs)noexcept {
 		if (lhs.size() != rhs.size())return false;
 		for (size_t i = 0; i < lhs.size(); i++) {
 			if (lhs[i] != rhs[i])return false;

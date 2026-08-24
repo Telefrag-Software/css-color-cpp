@@ -110,10 +110,10 @@ namespace css_colors::details {
 		template<class colorspace>
 		using output_type_t = typename output_type<colorspace>::type;
 
-		template<bool legacy> constexpr std::string_view untyped_separator = " ";
-		template<> constexpr std::string_view untyped_separator<true> = ", ";
-		template<bool legacy> constexpr std::string_view untyped_separator_alpha = " / ";
-		template<> constexpr std::string_view untyped_separator_alpha<true> = ", ";
+		template<bool legacy> inline constexpr std::string_view untyped_separator = " ";
+		template<> inline constexpr std::string_view untyped_separator<true> = ", ";
+		template<bool legacy> inline constexpr std::string_view untyped_separator_alpha = " / ";
+		template<> inline constexpr std::string_view untyped_separator_alpha<true> = ", ";
 		template<bool legacy>
 		inline std::ostream& print_untyped(std::ostream& os, const untyped_color& color) {
 			os << color.first[0] << untyped_separator<legacy> << color.first[1] << untyped_separator<legacy> << color.first[2];
@@ -175,9 +175,9 @@ namespace css_colors::details {
 			}
 		}
 		template<size_t id = 0>
-		constexpr size_t longest_namedcolor_name = math::max(longest_namedcolor_name<id + 1>, named_colors::named[id].first.length());
+		inline constexpr size_t longest_namedcolor_name = math::max(longest_namedcolor_name<id + 1>, named_colors::named[id].first.length());
 		template<>
-		constexpr size_t longest_namedcolor_name<named_colors::named.size()> = 0;
+		inline constexpr size_t longest_namedcolor_name<named_colors::named.size()> = 0;
 		template<uint8_t func_id = 0>
 		struct function_name_info {
 			inline constexpr static bool check(const std::string_view& sv)

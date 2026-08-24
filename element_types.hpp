@@ -83,11 +83,11 @@ namespace css_colors::details {
 			}
 		};
 		template<class type, typename = void>
-		constexpr bool should_clamp_v = false;
+		inline constexpr bool should_clamp_v = false;
 		template<class range>
-		constexpr bool should_clamp_v<element_types::number<range>, std::void_t<decltype(range::clamp_range)>> = true;
+		inline constexpr bool should_clamp_v<element_types::number<range>, std::void_t<decltype(range::clamp_range)>> = true;
 		template<>
-		constexpr bool should_clamp_v<element_types::percentage> = true;
+		inline constexpr bool should_clamp_v<element_types::percentage> = true;
 
 		template<class range>
 		struct parse_element_helper <element_types::number<range>, void> {

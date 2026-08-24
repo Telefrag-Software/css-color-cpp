@@ -85,12 +85,12 @@ namespace css_colors::details {
 		constexpr bool output_legacy_v = output_legacy<colorspace>::value;
 
 		template<uint8_t colorspace = 0>
-		constexpr bool dynamic_output_legacy_v(uint8_t id) {
+		inline constexpr bool dynamic_output_legacy_v(uint8_t id) {
 			if (colorspace == id)return output_legacy_v<to_colorspace_t<colorspace>>;
 			return dynamic_output_legacy_v<colorspace + 1>(id);
 		}
 		template<>
-		constexpr bool dynamic_output_legacy_v<to_index_v<unknown_colorspace>>(uint8_t) 
+		inline constexpr bool dynamic_output_legacy_v<to_index_v<unknown_colorspace>>(uint8_t) 
 		{
 			return false;
 		}

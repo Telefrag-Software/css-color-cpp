@@ -7,7 +7,7 @@
 namespace css_colors::details {
 	namespace parser {
 		namespace tokenizer_impl {
-			
+
 			struct string_view_tokenizer :public std::string_view
 			{
 				using std::string_view::basic_string_view;

@@ -6,11 +6,11 @@
 namespace css_colors::details {
 	namespace colorspaces {
 		namespace converter_impl {
-			
+
 			template<class T>
-			constexpr size_t depth_v = depth_v<typename T::base_type> +1;
+			inline constexpr size_t depth_v = depth_v<typename T::base_type> +1;
 			template<>
-			constexpr size_t depth_v<srgb> = 0;		//use srgb as root.
+			inline constexpr size_t depth_v<srgb> = 0;		//use srgb as root.
 
 			struct nullconv_t {
 				//as a placeholder when Target==Source
@@ -189,17 +189,17 @@ namespace css_colors::details {
 
 
 		template<class colorspace>
-		constexpr std::optional<typed_color<colorspace>> color::as_typed()const {
+		inline constexpr std::optional<typed_color<colorspace>> color::as_typed()const {
 			return dynamic_convert<colorspace>::conv(*this);
 		}
 		template<class colorspace>
-		constexpr color color::as() const {
+		inline constexpr color color::as() const {
 			auto typed = as_typed<colorspace>();
 			if (typed)return color(typed.value());
 			else return nullcolor;
 		}
 
-		constexpr color color::as(uint8_t type) const {
+		inline constexpr color color::as(uint8_t type) const {
 			return dyn2dyn_convert::conv(*this, type);
 		}
 		namespace conv_to_dword {

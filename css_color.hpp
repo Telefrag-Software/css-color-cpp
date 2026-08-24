@@ -17,7 +17,5 @@ namespace css_colors {
 	using details::colorspaces::clamp;
 
 	using details::parser::parse;
-	
-	 
 }
 #endif // !CSS_COLORS_HPP

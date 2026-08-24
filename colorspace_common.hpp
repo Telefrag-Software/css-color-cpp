@@ -33,13 +33,13 @@ namespace css_colors::details::colorspaces {
 
 
 		template<typename context,typename elem, typename tail, typename E = void>
-		constexpr bool is_before = is_before<context, elem, last_element_before<context, tail>>;
+		inline constexpr bool is_before = is_before<context, elem, last_element_before<context, tail>>;
 		template<typename context,typename elem>
-		constexpr bool is_before<context,elem, elem, void> = true;
+		inline constexpr bool is_before<context,elem, elem, void> = true;
 		template<typename context,typename elem>
-		constexpr bool is_before<context,elem, null_node, typename std::enable_if<!std::is_same<elem, null_node>::value>::type> = false;
+		inline constexpr bool is_before<context,elem, null_node, typename std::enable_if<!std::is_same<elem, null_node>::value>::type> = false;
 		template<typename context,typename tail>
-		constexpr size_t list_size_before =
+		inline constexpr size_t list_size_before =
 			(!std::is_same_v<tail, null_node> && !std::is_same_v<last_element_before<context, tail>, null_node>)
 			? list_size_before<context, last_element_before<context, tail>>+1 : 0;
 
